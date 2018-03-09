@@ -1,0 +1,226 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+        <meta name="description" content="{% block meta_description %}{% endblock %}">
+
+        <title>{% block head_title %}{% endblock head_title %}</title>
+        <link rel="shortcut icon" href="{% static "ceda_theme/img/favicon.ico" %}">
+
+        {% block blog_feeds %}
+        {% endblock blog_feeds %}
+
+        {% block stylesheets %}
+        <!-- Bootstrap Core
+        CSS -->
+        <link href="{% static "ceda_theme/css/bootstrap.min.css" %}" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="{% static "ceda_theme/css/modern-business.css" %}" rel="stylesheet">
+
+        {# some customisations go here before ceda theme styling #}
+        {% block stylesheets_pre_extra %}{% endblock stylesheets_pre_extra %}
+
+        <link href="{% static "ceda_theme/css/ceda.css" %}" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        {# most further customisations can go here, after ceda theme styling #}
+        {% block stylesheets_extra %}{% endblock stylesheets_extra %}
+
+        {% endblock stylesheets %}
+
+        {% block head_js %}
+
+        <script src="{% static "ceda_theme/js/cookielaw.js" %}"></script>
+        {% block head_js_extra %}{% endblock head_js_extra%}
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+        queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file://
+        -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        {% endblock head_js %}
+
+        {% block head_extra %}{% endblock %}
+    </head>
+
+    <body id="{% block body_id %}body{% endblock %}">
+        {% block navbar_main %}
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    {% block branding %}
+                    <a class="navbar-brand" href="{% block home_url %}/{% endblock %}">
+                    <img src="{% static "ceda_theme/img/ceda_logo_transp_white_h80.png" %}" alt="CEDA logo">
+          </a>
+                    {% endblock %}
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    {% block navigation %}{% endblock %}
+                </div>
+            </div>
+        </nav>
+        {% endblock %}
+
+        {% block page_special %}
+        {% endblock %}
+
+        <div id="page" class="container">
+            <div id="content-main" class="container">
+            {% block cookielaw_banner %}
+                {% if 'cookielaw_accepted' not in request.COOKIES %}
+                    <div class="alert alert-info text-center" id="cookielaw_banner">
+                    This website and other CEDA sites use cookies.
+                    By continuing to use this website you are agreeing to our use of cookies.
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default"
+                                    onclick="javascript:Cookielaw.createCookie();$('#cookielaw_banner').slideUp();">OK</button>
+                            <button type="button" class="btn btn-default"
+                                    onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
+                        </div>
+                    </div>
+                    <script>
+                        if( Cookielaw.hasCookie() ) $('#cookielaw_banner').hide();
+                    </script>
+                {% endif %}
+            {% endblock cookielaw_banner %}
+
+            {% block content_main %}
+                {% block content_header %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">{% block page_title %}{% endblock %}</h1>
+                        {% block breadcrumbs %}{% endblock %}
+                    </div>
+                </div>
+                {% endblock %}
+
+                {% block notifications %}
+                {% if messages %}
+                    <div class="col-md-6 col-md-offset-3">
+                        {% for message in messages %}
+                            {% if 'success' in message.tags %}
+                                <div class="alert alert-with-icon alert-success" role="alert">
+                                    <i class="fa fa-check-circle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% elif 'error' in message.tags %}
+                                <div class="alert alert-with-icon alert-danger" role="alert">
+                                    <i class="fa fa-exclamation-circle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% elif 'warning' in message.tags %}
+                                <div class="alert alert-with-icon alert-warning" role="alert">
+                                    <i class="fa fa-exclamation-triangle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-with-icon alert-info" role="alert">
+                                    <i class="fa fa-info-circle"></i> <span>{{ message }}</span>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endblock %}
+
+                <div class="row">
+                    <div class="col-md-12">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+
+
+        {% block footer %}
+        <footer class="navbar-fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-4 float-left">
+                        <a href="http://www.ncas.ac.uk" title="NCAS"><img src="{% static "ceda_theme/img/ncas_logo_transparent_blacktext.png" %}" title="NCAS logo" alt="NCAS logo" class="img-responsive center-block"></a>
+                    </div>
+                    <div class="col-sm-4 hidden-xs">
+                            <p class="text-center small">
+                                Copyright © 2017 <a href="http://www.stfc.ac.uk">STFC</a>
+                                All Rights Reserved<br>
+                                <a href="http://www.ceda.ac.uk/accessibility" target="_blank">Accessibility</a> |
+                                <a href="http://www.ceda.ac.uk/disclaimer" target="_blank">Disclaimer</a> | <a href="http://www.ceda.ac.uk/privacy-and-cookies/" target="_blank">Privacy and Cookies</a>
+                            </p>
+                    </div>
+                    <div class="col-xs-4 float-right">
+                        <a href="http://www.nceo.ac.uk" title="STFC"><img src="{% static "ceda_theme/img/nceologo200.png" %}" title="NCEO logo" alt="NCEO logo" class="img-responsive center-block"></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
+
+        </div>
+        <!-- /.container -->
+
+        {% block footer_js %}
+        <!-- jQuery -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="{% static "ceda_theme/js/invalid_controls.js" %}"></script>
+        <script>!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"http://help.ceda.ac.uk"},contact:{enabled:!0,formId:"d94ad5e4-cc13-11e5-9e75-0a7d6919297d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});</script>
+        <script>
+          HS.beacon.config({
+            // modal: true,
+            color: '#ff6600',
+            topArticles: true,
+            //icon: 'message',
+            icon: 'question',
+            translation: {
+              searchLabel: 'Search CEDA and JASMIN docs',
+              searchErrorLabel: 'There was a problem searching the Help pages. Visit: help.ceda.ac.uk or email support@ceda.ac.uk'
+            },
+            topics: [
+              { val: 'ceda-help', label: 'Help with CEDA archives' },
+              { val: 'jasmin-help', label: 'Help with JASMIN/CEMS'},
+              { val: 'account-problem', label: 'Help with my account'},
+              { val: 'bug-flag', label: 'Found a bug?'},
+              { val: 'content-flag', label: 'Content on this page looks wrong'}
+            ],
+            attachment: true,
+            instructions:'Drop CEDA Support a message below and we\'ll try to help.'
+          });
+          HS.beacon.ready(function() {
+            HS.beacon.suggest([
+              '56f264e59033604f41b37931',
+              '56f0217ac697913a277bd865',
+              '575e96789033601be51e8fa0',
+              '56f0229bc697913a277bd873',
+              '56fada199033601eb67375c0',
+              '56f13a7dc697913a277bddcd',
+              '56f26f479033604f41b37989'
+              ]);
+            // If the user doesn't have the cookie, pop ourselves up, but set the cookie
+            if( document.cookie.match(/^(.*; ?)?hs_beacon_shown=[^;]+/) === null ) {
+              // Open the Beacon as soon as it's ready
+              this.open();
+              //HS.beacon.search('account');
+              setTimeout(this.close, 3000);
+              // Set cookie that expires at end of session
+              document.cookie = "hs_beacon_shown=1; expires=; domain=.ceda.ac.uk; path=/; ";
+            }
+          });
+        </script>
+        {% block footer_js_extra %}{% endblock %}
+        {% endblock %}
+    </body>
+</html>
