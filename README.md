@@ -1,11 +1,12 @@
 # fwtheme-django
 
-Django app providing Django framework theme for Django-based web apps. Requires lower-level orgtheme and higher level apptheme for full functionality.
+Django app providing vanilla Bootstrap v4 theme for Django-based web apps.
+Pulls in "default" theme from Bootswatch.
 
-## Installation
+## Installation
 
 `fwtheme-django` can be installed directly from Github using pip:
 
 ```
-$ pip install git+https://github.com/cedadev/fwtheme-django.git
+$ pip install git+https://git@github.com/cedadev/fwtheme-django.git
 ```
