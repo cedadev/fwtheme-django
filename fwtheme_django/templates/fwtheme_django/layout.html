@@ -63,22 +63,19 @@
  
     {% block navbar_main %}
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-      <div class="container-fluid">
-        {% block navbar_branding %}
-        <a href="../" class="navbar-brand">
-          <img src="https://placehold.it/200x70" alt="Site logo">
-        </a>
-        {% endblock navbar_branding %}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        {% block navigation %}
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            {% block navbar_dropdown %}
-            {% endblock navbar_dropdown %}
+        <div class="container">
+            {% block navbar_branding %}
+            <a href="../" class="navbar-brand">
+                <img src="https://placehold.it/200x70" alt="Site logo">
+            </a>
+            {% endblock navbar_branding %}
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% block navigation %}
+            {% endblock navigation %}
+            
         </div>
-        {% endblock navigation %}
-      </div>
     </div>
     {% endblock navbar_main %}
 
