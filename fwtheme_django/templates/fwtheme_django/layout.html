@@ -34,6 +34,7 @@
     {% endblock stylesheets %}
 
     {% block head_js %}
+      <script src="http://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/jquery/dist/jquery.min.js"></script>
       <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
     {% endblock head_js %}
 
@@ -166,9 +167,51 @@
       {% endblock footer %}
 
 
-    <script src="http://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/jquery/dist/jquery.min.js"></script>
     <script src="http://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/popper.js/dist/umd/popper.min.js"></script>
     <script src="http://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="http://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_assets/js/custom.js"></script>
+    <script>!function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"https://help.ceda.ac.uk"},contact:{enabled:!0,formId:"d94ad5e4-cc13-11e5-9e75-0a7d6919297d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});</script>
+    <script>
+      HS.beacon.config({
+        // modal: true,
+        color: '#ff6600',
+        topArticles: true,
+        //icon: 'message',
+        icon: 'question',
+        translation: {
+          searchLabel: 'Search CEDA and JASMIN docs',
+          searchErrorLabel: 'There was a problem searching the Help pages. Visit: help.ceda.ac.uk or email support@ceda.ac.uk'
+        },
+        topics: [
+          { val: 'ceda-help', label: 'Help with CEDA archives' },
+          { val: 'jasmin-help', label: 'Help with JASMIN/CEMS'},
+          { val: 'account-problem', label: 'Help with my account'},
+          { val: 'bug-flag', label: 'Found a bug?'},
+          { val: 'content-flag', label: 'Content on this page looks wrong'}
+        ],
+        attachment: true,
+        instructions:'Drop CEDA Support a message below and we\'ll try to help.'
+      });
+      HS.beacon.ready(function() {
+        HS.beacon.suggest([
+          '56f264e59033604f41b37931',
+          '56f0217ac697913a277bd865',
+          '575e96789033601be51e8fa0',
+          '56f0229bc697913a277bd873',
+          '56fada199033601eb67375c0',
+          '56f13a7dc697913a277bddcd',
+          '56f26f479033604f41b37989'
+          ]);
+        // If the user doesn't have the cookie, pop ourselves up, but set the cookie
+        if( document.cookie.match(/^(.*; ?)?hs_beacon_shown=[^;]+/) === null ) {
+          // Open the Beacon as soon as it's ready
+          // this.close()
+          //HS.beacon.search('account');
+          // setTimeout(this.close, 3000);
+          // Set cookie that expires at end of session
+          document.cookie = "hs_beacon_shown=1; expires=; domain=.ceda.ac.uk; path=/; ";
+        }
+      });
+    </script>
   </body>
 </html>
