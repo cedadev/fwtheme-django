@@ -41,7 +41,7 @@
     {% block head_js_extra %}{% endblock head_js_extra %}
 
   </head>
-  <body id="{% block body_id %}body{% endblock body_id %}">
+  <body id="{% block body_id %}body{% endblock body_id %}" class="flex-site">
   
   {% block cookielaw_banner %}
       {% if 'cookielaw_accepted' not in request.COOKIES %}
@@ -85,7 +85,7 @@
     {% block page_special %}
     {% endblock %}
 
-    <div class="container-fluid">
+    <div class="container-fluid flex-grow-1">
 
       {% block content_main %}
       {% block content_header %}
