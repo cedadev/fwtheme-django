@@ -87,6 +87,10 @@
     {% block page_special %}
     {% endblock %}
 
+    {# To make content occupy full width, override the block page_container #}
+    {# with one of the same name which OMITS the div class=container tag #}
+
+    {% block page_container %}
     <div class="container">
 
       {% block content_main %}
@@ -147,6 +151,7 @@
 
 
     </div>
+    {% endblock page_container %}
 
     {% block footer %}
     <footer>
