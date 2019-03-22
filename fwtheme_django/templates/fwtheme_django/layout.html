@@ -1,4 +1,5 @@
-{% load staticfiles cookielaw_tags i18n %}
+{% load staticfiles cookielaw_tags i18n fwtheme_tags %}
+{% is_container_fluid as container_fluid %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +92,8 @@
     {# with one of the same name which OMITS the div class=container tag #}
 
     {% block page_container %}
-    <div class="container">
+
+    <div class="container{% if container_fluid %}-fluid{% endif %}">
 
       {% block content_main %}
       {% block content_header %}

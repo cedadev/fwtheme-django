@@ -10,3 +10,12 @@ Pulls in "default" theme from Bootswatch.
 ```
 $ pip install git+https://git@github.com/cedadev/fwtheme-django.git
 ```
+
+## Variables
+
+If your application would be best served in a full width container, you can use
+the boolean variable `CONTAINER_FLUID` in your settings.py
+
+| Variable         | Options         |
+|------------------|-----------------|
+| `CONTAINER_FLUID`|`True` or `False`|
