@@ -44,8 +44,6 @@
   
   {% block cookielaw_banner %}
       {% if 'cookielaw_accepted' not in request.COOKIES %}
-
-      <div class="container-fluid">
             <div class="alert alert-info text-center" id="CookielawBanner">
             This website uses cookies.
             By continuing to use this website you are agreeing to our use of cookies.&nbsp;
@@ -57,7 +55,6 @@
                             onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
                 </div>
             </div>
-        </div>
       {% endif %}
   {% endblock %}
  
