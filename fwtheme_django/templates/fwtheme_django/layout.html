@@ -1,4 +1,5 @@
-{% load staticfiles cookielaw_tags i18n %}
+{% load staticfiles cookielaw_tags i18n fwtheme_tags %}
+{% is_container_fluid as container_fluid %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,14 +14,14 @@
     {% block stylesheets %}
     <!-- Bootstrap Core
     CSS -->
-    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/bootstrap/dist/css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/bootstrap/dist/css/bootstrap.css" media="screen">
     <!-- Custom CSS -->
     <!-- customisations of vanilla bootstrap by the bootswatch variant we're using (output from Bootswatch) -->
-    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_assets/css/custom.min.css">
+    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/css/custom.min.css">
     <!-- customisations of the above, to separate own customisations from Bootswatch's -->
     <link rel="stylesheet" href="{% static "fwtheme_django/css/fw-custom.css" %}" >
     <!-- organisation customisations go here (blank in this case, over-ridden by each fwtheme-django-ORG theme) -->
-    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_assets/css/org-custom.css">
+    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/css/org-custom.css">
 
     {# some customisations go here before org theme styling #}
     {% block stylesheets_pre_extra %}{% endblock stylesheets_pre_extra %}
@@ -88,7 +89,8 @@
     {# with one of the same name which OMITS the div class=container tag #}
 
     {% block page_container %}
-    <div class="container">
+
+    <div class="container{% if container_fluid %}-fluid{% endif %}">
 
       {% block content_main %}
       {% block content_header %}
@@ -171,10 +173,10 @@
       {% endblock footer %}
 
 
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/jquery/dist/jquery.min.js"></script>
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/popper.js/dist/umd/popper.min.js"></script>
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.1/_assets/js/custom.js"></script>
+    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/popper.js/dist/umd/popper.min.js"></script>
+    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/js/custom.js"></script>
     
     {% block tail_js_extra %}{% endblock tail_js_extra %}
   </body>
