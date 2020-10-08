@@ -28,7 +28,7 @@ and we are given the URL the user tried when they encountered the issue.
 
 In some case you may want to add extra detail to the error pages. If you just want a different base
 template or add other static text, you simply create corresponding templates in the root of your template
-tree for you app.
+tree for you app. **Make sure your app is higher in the app list than `fwtheme-django`**
 
 e.g
 ```
