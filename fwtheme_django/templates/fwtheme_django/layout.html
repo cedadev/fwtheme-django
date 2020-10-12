@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {% block blog_feeds %}
     {% endblock %}
-    
+
     {% block stylesheets %}
     <!-- Bootstrap Core
     CSS -->
@@ -35,14 +35,24 @@
     {% endblock stylesheets %}
 
     {% block head_js %}
-      <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
+        <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NDG2XX7');</script>
+        <!-- End Google Tag Manager -->
     {% endblock head_js %}
 
     {% block head_js_extra %}{% endblock head_js_extra %}
 
   </head>
   <body id="{% block body_id %}body{% endblock body_id %}">
-  
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDG2XX7"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
   {% block cookielaw_banner %}
       {% if 'cookielaw_accepted' not in request.COOKIES %}
             <div class="alert alert-info text-center" id="CookielawBanner">
@@ -58,7 +68,7 @@
             </div>
       {% endif %}
   {% endblock %}
- 
+
     {% block navbar_main %}
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
@@ -74,10 +84,10 @@
                 {% block navbar_dropdown %}
                 {% endblock navbar_dropdown %}
             {% endblock navigation %}
-            
+
             {% block user_status %}
             {% endblock user_status %}
-            
+
         </div>
     </div>
     {% endblock navbar_main %}
@@ -128,8 +138,8 @@
                           {% endif %}
                       {% endfor %}
                 {% endif %}
-                {% endblock %}  
-              
+                {% endblock %}
+
             </div>
           </div>
           {% endblock info_panel %}
@@ -177,7 +187,7 @@
     <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/popper.js/dist/umd/popper.min.js"></script>
     <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/js/custom.js"></script>
-    
+
     {% block tail_js_extra %}{% endblock tail_js_extra %}
   </body>
 </html>
