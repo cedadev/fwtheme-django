@@ -49,6 +49,7 @@
 
   </head>
   <body id="{% block body_id %}body{% endblock body_id %}">
+    <div id="root">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDG2XX7"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -100,7 +101,7 @@
 
     {% block page_container %}
 
-    <div class="container{% if container_fluid %}-fluid{% endif %}">
+    <div class="container{% if container_fluid %}-fluid{% endif %}" id="content-main">
 
       {% block content_main %}
       {% block content_header %}
@@ -189,5 +190,6 @@
     <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/js/custom.js"></script>
 
     {% block tail_js_extra %}{% endblock tail_js_extra %}
+    </div><!-- #root -->
   </body>
 </html>
