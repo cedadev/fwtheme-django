@@ -39,57 +39,57 @@
         {% block head_js_extra %}{% endblock head_js_extra %}
 
     </head>
-    <body id="{% block body_id %}body{% endblock body_id %}">
-        <div id="root">
-            <!-- Google Tag Manager (noscript) -->
-            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDG2XX7"
-                height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-            <!-- End Google Tag Manager (noscript) -->
-            {% block cookielaw_banner %}
-                {% if 'cookielaw_accepted' not in request.COOKIES %}
-                    <div class="alert alert-info text-center" id="CookielawBanner">
-                        This website uses cookies.
-                        By continuing to use this website you are agreeing to our use of cookies.&nbsp;
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-secondary"
-                                onclick="javascript:Cookielaw.createCookielawCookie();">OK</a>
+    <body id="{% block body_id %}body{% endblock body_id %}" class="d-flex flex-column min-vh-100">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDG2XX7"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% block cookielaw_banner %}
+            {% if 'cookielaw_accepted' not in request.COOKIES %}
+                <div class="alert alert-info text-center" id="CookielawBanner">
+                    This website uses cookies.
+                    By continuing to use this website you are agreeing to our use of cookies.&nbsp;
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary"
+                            onclick="javascript:Cookielaw.createCookielawCookie();">OK</a>
 
-                            <button type="button" class="btn btn-secondary"
-                                onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
-                        </div>
-                    </div>
-                {% endif %}
-            {% endblock %}
-
-            {% block navbar_main %}
-                <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-                    <div class="container">
-                        {% block navbar_branding %}
-                            <a href="../" class="navbar-brand">
-                                <img src="https://placehold.it/200x70" alt="Site logo">
-                            </a>
-                        {% endblock navbar_branding %}
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        {% block navigation %}
-                            {% block navbar_dropdown %}
-                            {% endblock navbar_dropdown %}
-                        {% endblock navigation %}
-
-                        {% block user_status %}
-                        {% endblock user_status %}
-
+                        <button type="button" class="btn btn-secondary"
+                            onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
                     </div>
                 </div>
-            {% endblock navbar_main %}
+            {% endif %}
+        {% endblock %}
 
-            {% block page_special %}
-            {% endblock %}
+        {% block navbar_main %}
+            <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+                <div class="container">
+                    {% block navbar_branding %}
+                        <a href="../" class="navbar-brand">
+                            <img src="https://placehold.it/200x70" alt="Site logo">
+                        </a>
+                    {% endblock navbar_branding %}
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {% block navigation %}
+                        {% block navbar_dropdown %}
+                        {% endblock navbar_dropdown %}
+                    {% endblock navigation %}
 
-            {# To make content occupy full width, override the block page_container #}
-            {# with one of the same name which OMITS the div class=container tag #}
+                    {% block user_status %}
+                    {% endblock user_status %}
 
+                </div>
+            </div>
+        {% endblock navbar_main %}
+
+        {% block page_special %}
+        {% endblock %}
+
+        {# To make content occupy full width, override the block page_container #}
+        {# with one of the same name which OMITS the div class=container tag #}
+
+        <main class="flex-fill">
             {% block page_container %}
 
                 <div class="container{% if container_fluid %}-fluid{% endif %}" id="content-main">
@@ -156,43 +156,43 @@
 
                 </div>
             {% endblock page_container %}
-
-            {% block footer %}
-                <footer>
-                    <div class="container">
-                        <div class="row d-flex justify-content-around">
-                            <div class="col col-md-4 text-center ">
-                                <a href="#" title="NCAS"><img src="https://placehold.it/200x70" %}" title="logo" alt="logo" ></a>
-                            </div>
-                            <div class="col-md-4">
-                                <p class="text-center small">
-                                    Other footer text can go here
-                                </p>
-                            </div>
-                            <div class="col col-md-4 text-center">
-                                <a href="#" title="STFC"><img src="https://placehold.it/200x70" title="logo" alt="logo"></a>
-                            </div>
+        </main>
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <div class="row d-flex justify-content-around">
+                        <div class="col col-md-4 text-center ">
+                            <a href="#" title="NCAS"><img src="https://placehold.it/200x70" %}" title="logo" alt="logo" ></a>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="text-center small">
+                                Other footer text can go here
+                            </p>
+                        </div>
+                        <div class="col col-md-4 text-center">
+                            <a href="#" title="STFC"><img src="https://placehold.it/200x70" title="logo" alt="logo"></a>
                         </div>
                     </div>
-                </footer>
-            {% endblock footer %}
+                </div>
+            </footer>
+        {% endblock footer %}
 
 
-            {% block tail_js %}
-                <script
-                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-                    crossorigin="anonymous">
-                </script>
-                <script
-                    src="https://code.jquery.com/jquery-3.6.0.min.js"
-                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-                    crossorigin="anonymous">
-                </script>
-            {% endblock tail_js %}
+        {% block tail_js %}
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                crossorigin="anonymous">
+            </script>
+            <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous">
+            </script>
+        {% endblock tail_js %}
 
-            {% block tail_js_extra %}{% endblock  %}
-            {% block js_page %}{% endblock %}
-        </div><!-- #root -->
-    </body>
+        {% block tail_js_extra %}{% endblock  %}
+        {% block js_page %}{% endblock %}
+    </div><!-- #root -->
+</body>
 </html>
