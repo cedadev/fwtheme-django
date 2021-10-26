@@ -1,195 +1,198 @@
-{% load static cookielaw_tags i18n fwtheme_tags %}
+{% load static artefacts cookielaw_tags i18n fwtheme_tags %}
 {% is_container_fluid as container_fluid %}
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>{% block head_title %}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    {% block blog_feeds %}
-    {% endblock %}
+    <head>
+        <meta charset="utf-8">
+        <title>{% block head_title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block blog_feeds %}
+        {% endblock %}
 
-    {% block stylesheets %}
-    <!-- Bootstrap Core
-    CSS -->
-    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/bootstrap/dist/css/bootstrap.css" media="screen">
-    <!-- Custom CSS -->
-    <!-- customisations of vanilla bootstrap by the bootswatch variant we're using (output from Bootswatch) -->
-    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/css/custom.min.css">
-    <!-- customisations of the above, to separate own customisations from Bootswatch's -->
-    <link rel="stylesheet" href="{% static "fwtheme_django/css/fw-custom.css" %}" >
-    <!-- organisation customisations go here (blank in this case, over-ridden by each fwtheme-django-ORG theme) -->
-    <link rel="stylesheet" href="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/css/org-custom.css">
+        {% block stylesheets %}
+            <!-- Bootswatch flatly theme -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.1.1/dist/flatly/bootstrap.min.css" integrity="sha256-SpUnqrlzbclwzWGBJu30zYMCaBln3HcjmsrQfYD7QFo=" crossorigin="anonymous">
 
-    {# some customisations go here before org theme styling #}
-    {% block stylesheets_pre_extra %}{% endblock stylesheets_pre_extra %}
+            {# some customisations go here before org theme styling #}
+            {% block stylesheets_pre_extra %}{% endblock stylesheets_pre_extra %}
 
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+            <!-- Custom Fonts -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-    {# most further customisations can go here, after org theme styling #}
-    {% block stylesheets_extra %}{% endblock %}
+            {# most further customisations can go here, after org theme styling #}
+            {% block stylesheets_extra %}{% endblock %}
 
-    {% endblock stylesheets %}
+        {% endblock stylesheets %}
 
-    {% block head_js %}
-        <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-NDG2XX7');</script>
-        <!-- End Google Tag Manager -->
-    {% endblock head_js %}
+        {% block head_js %}
+            <script src="{% static "cookielaw/js/cookielaw.js" %}"></script>
+            <!-- Google Tag Manager -->
+            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-NDG2XX7');</script>
+            <!-- End Google Tag Manager -->
+        {% endblock head_js %}
 
-    {% block head_js_extra %}{% endblock head_js_extra %}
+        {% block head_js_extra %}{% endblock head_js_extra %}
 
-  </head>
-  <body id="{% block body_id %}body{% endblock body_id %}">
-    <div id="root">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDG2XX7"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-  {% block cookielaw_banner %}
-      {% if 'cookielaw_accepted' not in request.COOKIES %}
-            <div class="alert alert-info text-center" id="CookielawBanner">
-            This website uses cookies.
-            By continuing to use this website you are agreeing to our use of cookies.&nbsp;
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary"
+    </head>
+    <body id="{% block body_id %}body{% endblock body_id %}" class="d-flex flex-column min-vh-100">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDG2XX7"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        {% block cookielaw_banner %}
+            {% if 'cookielaw_accepted' not in request.COOKIES %}
+                <div class="alert alert-info text-center" id="CookielawBanner">
+                    This website uses cookies.
+                    By continuing to use this website you are agreeing to our use of cookies.&nbsp;
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary"
                             onclick="javascript:Cookielaw.createCookielawCookie();">OK</a>
 
-                    <button type="button" class="btn btn-secondary"
+                        <button type="button" class="btn btn-secondary"
                             onclick="javascript:window.open('http://www.ceda.ac.uk/privacy-and-cookies/')">Find out more</button>
+                    </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block navbar_main %}
+            <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+                <div class="container">
+                    {% block navbar_branding %}
+                        <a href="../" class="navbar-brand">
+                            <img src="https://placehold.it/200x70" alt="Site logo">
+                        </a>
+                    {% endblock navbar_branding %}
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {% block navigation %}
+                        {% block navbar_dropdown %}
+                        {% endblock navbar_dropdown %}
+                    {% endblock navigation %}
+
+                    {% block user_status %}
+                    {% endblock user_status %}
+
                 </div>
             </div>
-      {% endif %}
-  {% endblock %}
+        {% endblock navbar_main %}
 
-    {% block navbar_main %}
-    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-        <div class="container">
-            {% block navbar_branding %}
-            <a href="../" class="navbar-brand">
-                <img src="https://placehold.it/200x70" alt="Site logo">
-            </a>
-            {% endblock navbar_branding %}
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {% block navigation %}
-                {% block navbar_dropdown %}
-                {% endblock navbar_dropdown %}
-            {% endblock navigation %}
+        {% block page_special %}
+        {% endblock %}
 
-            {% block user_status %}
-            {% endblock user_status %}
+        {# To make content occupy full width, override the block page_container #}
+        {# with one of the same name which OMITS the div class=container tag #}
 
-        </div>
-    </div>
-    {% endblock navbar_main %}
+        <main class="flex-fill">
+            {% block page_container %}
 
-    {% block page_special %}
-    {% endblock %}
+                <div class="container{% if container_fluid %}-fluid{% endif %}" id="content-main">
 
-    {# To make content occupy full width, override the block page_container #}
-    {# with one of the same name which OMITS the div class=container tag #}
+                    {% block content_main %}
+                        {% block content_header %}
 
-    {% block page_container %}
+                            <div class="page-header" id="banner">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-7 col-sm-6">
+                                        {% block page_title %}
+                                            <h1>Page title</h1>
+                                            <p class="lead">Leader text for this page</p>
+                                        {% endblock %}
+                                    </div>
+                                    {% block info_panel %}
+                                        <div class="col-lg-4 col-md-5 col-sm-6">
+                                            <div class="sponsor">
+                                                {% block notifications %}
+                                                    {% if messages %}
+                                                        {% for message in messages %}
+                                                            {% if 'success' in message.tags %}
+                                                                <div class="alert alert-with-icon alert-success" role="alert">
+                                                                    <i class="fa fa-check-circle"></i> <span>{{ message }}</span>
+                                                                </div>
+                                                            {% elif 'error' in message.tags %}
+                                                                <div class="alert alert-with-icon alert-danger" role="alert">
+                                                                    <i class="fa fa-exclamation-circle"></i> <span>{{ message }}</span>
+                                                                </div>
+                                                            {% elif 'warning' in message.tags %}
+                                                                <div class="alert alert-with-icon alert-warning" role="alert">
+                                                                    <i class="fa fa-exclamation-triangle"></i> <span>{{ message }}</span>
+                                                                </div>
+                                                            {% else %}
+                                                                <div class="alert alert-with-icon alert-info" role="alert">
+                                                                    <i class="fa fa-info-circle"></i> <span>{{ message }}</span>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endblock %}
 
-    <div class="container{% if container_fluid %}-fluid{% endif %}" id="content-main">
+                                            </div>
+                                        </div>
+                                    {% endblock info_panel %}
+                                </div>
+                                <div class="row">
+                                    {% block breadcrumbs %}{% endblock %}
+                                </div>
+                            </div>
 
-      {% block content_main %}
-      {% block content_header %}
+                        {% endblock content_header %}
 
-      <div class="page-header" id="banner">
-        <div class="row">
-          <div class="col-lg-8 col-md-7 col-sm-6">
-            {% block page_title %}
-              <h1>Page title</h1>
-              <p class="lead">Leader text for this page</p>
-            {% endblock %}
-          </div>
-          {% block info_panel %}
-          <div class="col-lg-4 col-md-5 col-sm-6">
-            <div class="sponsor">
-                {% block notifications %}
-                {% if messages %}
-                      {% for message in messages %}
-                          {% if 'success' in message.tags %}
-                              <div class="alert alert-with-icon alert-success" role="alert">
-                                  <i class="fa fa-check-circle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% elif 'error' in message.tags %}
-                              <div class="alert alert-with-icon alert-danger" role="alert">
-                                  <i class="fa fa-exclamation-circle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% elif 'warning' in message.tags %}
-                              <div class="alert alert-with-icon alert-warning" role="alert">
-                                  <i class="fa fa-exclamation-triangle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% else %}
-                              <div class="alert alert-with-icon alert-info" role="alert">
-                                  <i class="fa fa-info-circle"></i> <span>{{ message }}</span>
-                              </div>
-                          {% endif %}
-                      {% endfor %}
-                {% endif %}
-                {% endblock %}
+                        {% block content_panel %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {% block content %}{% endblock content%}
+                                </div>
+                            </div>
+                        {% endblock content_panel %}
 
-            </div>
-          </div>
-          {% endblock info_panel %}
-        </div>
-      </div>
-
-      {% endblock content_header %}
-
-      {% block content_panel %}
-      <div class="row">
-          <div class="col-md-12">
-              {% block content %}{% endblock content%}
-          </div>
-      </div>
-      {% endblock content_panel %}
-
-      {% endblock content_main %}
+                    {% endblock content_main %}
 
 
-    </div>
-    {% endblock page_container %}
+                </div>
+            {% endblock page_container %}
+        </main>
+        {% block footer %}
+            <footer>
+                <div class="container">
+                    <div class="row d-flex justify-content-around">
+                        <div class="col col-md-4 text-center ">
+                            <a href="#" title="NCAS"><img src="https://placehold.it/200x70" %}" title="logo" alt="logo" ></a>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="text-center small">
+                                Other footer text can go here
+                            </p>
+                        </div>
+                        <div class="col col-md-4 text-center">
+                            <a href="#" title="STFC"><img src="https://placehold.it/200x70" title="logo" alt="logo"></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        {% endblock footer %}
 
-    {% block footer %}
-    <footer>
-      <div class="container">
-          <div class="row d-flex justify-content-around">
-            <div class="col col-md-4 text-center ">
-                <a href="#" title="NCAS"><img src="https://placehold.it/200x70" %}" title="logo" alt="logo" ></a>
-            </div>
-            <div class="col-md-4">
-                <p class="text-center small">
-                    Other footer text can go here
-                </p>
-            </div>
-            <div class="col col-md-4 text-center">
-                <a href="#" title="STFC"><img src="https://placehold.it/200x70" title="logo" alt="logo"></a>
-            </div>
-          </div>
-        </div>
-      </footer>
-      {% endblock footer %}
 
+        {% block tail_js %}
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                crossorigin="anonymous">
+            </script>
+            <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous">
+            </script>
+        {% endblock tail_js %}
 
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/jquery/dist/jquery.min.js"></script>
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/popper.js/dist/umd/popper.min.js"></script>
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://artefacts.ceda.ac.uk/themes/orgtheme/0.2/_assets/js/custom.js"></script>
-
-    {% block tail_js_extra %}{% endblock tail_js_extra %}
+        {% block tail_js_extra %}{% endblock  %}
+        {% block js_page %}{% endblock %}
     </div><!-- #root -->
-  </body>
+</body>
 </html>
