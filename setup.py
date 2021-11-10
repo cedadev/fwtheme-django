@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     setup(
         name = 'fwtheme-django',
-        version = '1.0.0',
+        version = '1.0.1',
         description = 'Framework-level theme for Django app using bootstrap 4',
         long_description = README,
         classifiers = [
