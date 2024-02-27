@@ -12,8 +12,8 @@ with open(os.path.join(here, "README.md")) as f:
 if __name__ == "__main__":
     setup(
         name="fwtheme-django",
-        version="1.0.0",
-        description="Framework-level theme for Django app using bootstrap 4",
+        version="1.1.0",
+        description="Framework-level theme for Django app using Bootstrap 5",
         long_description=README,
         classifiers=[
             "Programming Language :: Python",
