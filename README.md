@@ -1,6 +1,6 @@
 # fwtheme-django
 
-Django app providing vanilla Bootstrap v4 theme for Django-based web apps.
+Django app providing vanilla Bootstrap v5 theme for Django-based web apps.
 Pulls in "default" theme from Bootswatch.
 
 ## Installation
